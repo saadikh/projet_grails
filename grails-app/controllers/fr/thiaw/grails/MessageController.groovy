@@ -10,9 +10,7 @@ class MessageController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    //@Secured(value = ["hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"])
-    //@Secured(value = ["hasRole('ROLE_USER')"], httpMethod = 'POST')
-    @Secured('IS_AUTHENTICATED_FULLY')
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond messageService.list(params), model:[messageCount: messageService.count()]

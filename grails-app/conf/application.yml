@@ -126,5 +126,7 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+server:
+    port: 8090
+    contextPath: /grails_tp2
 
-server.contextPath: /grails_tp2
