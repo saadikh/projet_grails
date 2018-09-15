@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/grails_tp2.iml" filepath="$PROJECT_DIR$/grails_tp2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grails_tp2_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/grails_tp2_integrationTest.iml" group="grails_tp2" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grails_tp2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/grails_tp2_main.iml" group="grails_tp2" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/grails_tp2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/grails_tp2_test.iml" group="grails_tp2" />
+      <module fileurl="file://$PROJECT_DIR$/m2_mbds.iml" filepath="$PROJECT_DIR$/m2_mbds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/m2_mbds_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/m2_mbds_integrationTest.iml" group="m2_mbds" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/m2_mbds_main.iml" filepath="$PROJECT_DIR$/.idea/modules/m2_mbds_main.iml" group="m2_mbds" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/m2_mbds_test.iml" filepath="$PROJECT_DIR$/.idea/modules/m2_mbds_test.iml" group="m2_mbds" />
     </modules>
   </component>
 </project>

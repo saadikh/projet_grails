@@ -1,13 +1,13 @@
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'fr.thiaw.grails.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'fr.thiaw.grails.UserRole'
-grails.plugin.springsecurity.authority.className = 'fr.thiaw.grails.Role'
-grails.plugin.springsecurity.requestMap.className = 'fr.thiaw.grails.UserRole'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'm2_mbds.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'm2_mbds.UserRole'
+grails.plugin.springsecurity.authority.className = 'm2_mbds.Role'
+grails.plugin.springsecurity.requestMap.className = 'm2_mbds.UserRole'
 grails.plugin.springsecurity.securityConfigType = 'Annotation'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	[pattern: '/',               access: ['permitAll']],
+	[pattern: '/**',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
@@ -17,8 +17,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/**/css/**',      access: ['permitAll']],
 	[pattern: '/**/images/**',   access: ['permitAll']],
 	[pattern: '/**/favicon.ico', access: ['permitAll']],
-	//[pattern: '/login/**', 			access: ['ROLE_ADMIN']],
-	[pattern: '/**', 			access: ['ROLE_ADMIN']]
+	[pattern: '/user',          access: ['USER_ADMIN']],
+//	[pattern: '/**', 				access: ['ROLE_ADMIN']],
+//	[pattern: '/role/**', 			access: ['ROLE_ADMIN']]
 
 ]
 
@@ -28,8 +29,8 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
-	[pattern: '/**',             filters: 'JOINED_FILTERS']
+	[pattern: '/**',             filters: 'JOINED_FILTERS'],
+
 ]
 
-grails.plugin.springsecurity.logout.postOnly = false
-
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/index'

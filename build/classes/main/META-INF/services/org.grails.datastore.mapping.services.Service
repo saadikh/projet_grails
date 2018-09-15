@@ -1,5 +1,8 @@
-fr.thiaw.grails.$MatchServiceImplementation
-fr.thiaw.grails.$MessageServiceImplementation
-fr.thiaw.grails.$RoleServiceImplementation
-fr.thiaw.grails.$UserRoleServiceImplementation
-fr.thiaw.grails.$UserServiceImplementation
+m2_mbds.$MatchServiceImplementation
+m2_mbds.$MessageServiceImplementation
+m2_mbds.$PlayerServiceImplementation
+m2_mbds.$UserServiceImplementation
+m2_mbds.$MatchServiceImplementation
+m2_mbds.$MessageServiceImplementation
+m2_mbds.$PlayerServiceImplementation
+m2_mbds.$UserServiceImplementation

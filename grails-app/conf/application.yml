@@ -2,7 +2,7 @@
 grails:
     profile: web
     codegen:
-        defaultPackage: fr.thiaw.grails
+        defaultPackage: m2_mbds
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
@@ -126,7 +126,19 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
-server:
-    port: 8090
-    contextPath: /grails_tp2
 
+server:
+    port: 8081
+    contextPath: /m2_mbds
+
+#    def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true, failOnError: true)
+#                                            def gamingRole = new Role(authority: 'ROLE_USER').save(flush: true, failOnError: true)
+#
+#                                            UserRole.create(adminUser,adminRole,flush:true)
+#                                            UserRole.create(playerUser,gamingRole,flush:true)
+#                                            UserRole.create(playerTwoUser,gamingRole,flush:true)
+#
+#
+#                                            def adminUser = new User(username: 'admin',password: 'password').save(flush: true, failOnError: true)
+#                                            def playerUser = new User(username: 'playerUser',password: 'playerUser').save(flush: true, failOnError: true)
+#                                            def playerTwoUser = new User(username: 'playerTwoUser',password: 'playerTwoUser')
