@@ -2,7 +2,3 @@ m2_mbds.$MatchServiceImplementation
 m2_mbds.$MessageServiceImplementation
 m2_mbds.$PlayerServiceImplementation
 m2_mbds.$UserServiceImplementation
-m2_mbds.$MatchServiceImplementation
-m2_mbds.$MessageServiceImplementation
-m2_mbds.$PlayerServiceImplementation
-m2_mbds.$UserServiceImplementation

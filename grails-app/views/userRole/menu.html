@@ -1,0 +1,83 @@
+<div id="mainNav">
+    <div class="block">
+        <h3 style="margin-top: 0.2em">Menu principal</h3>
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/teams/list">Équipes</a></li>
+            <li><a href="/sessions/list">Sessions</a></li>
+            <li><a href="/player/list">Joueurs</a></li>
+            <li><a href="/playgrounds/list">Terrains</a></li>
+            <li><a href="/site/stats">Statistiques</a></li>
+            <li><a href="/site/tutorial">Tutoriel</a></li>
+            <li><a href="/about">À propos</a></li>
+            <li><a href="/site/contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="block">
+
+
+        <h3 style="margin-top: 0.2em">
+            Authentification
+        </h3>
+        <form action="/auth/signIn" method="post" style="margin: 0px;">
+            <table style="border: 0px; margin: 0px; padding: 0px">
+                <tbody><tr>
+                    <td style="font-size: 12px; vertical-align: middle; padding-left: 5px">
+                        Pseudo</td>
+                    <td><input size="8" type="text" name="username">
+                        <br></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 12px; vertical-align: middle; padding-left: 5px">
+                        Mot de passe
+                    </td>
+                    <td>
+                        <input size="8" type="password" name="password">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-size: 12px; vertical-align: middle">
+                        Se souvenir de moi ?
+                        <input type="hidden" name="_rememberMe"><input type="checkbox" name="rememberMe" id="rememberMe">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <input type="submit" name="submitButton" value=" Login " style="margin-top: 0px; margin-bottom: 0px;">
+                        <br>
+                        <br>
+                        <a href="/player/remindPassword" style="font-size: 12px">
+                            Mot de passe oublié ?
+                        </a>
+                        <br>
+                        <a href="/player/register" style="font-size: 12px">
+                            Création de compte
+                        </a>
+                    </td>
+                </tr>
+                </tbody></table>
+        </form>
+
+    </div>
+
+
+    <br>
+    <div class="block">
+        <h3 style="margin-top: 0.2em">Qui est en-ligne ?</h3>
+
+
+        Il y a actuellement <b>1</b> joueur connecté
+
+        :
+        <ul>
+
+
+            <li><a href="/player/show/8205">CaptainLolo</a></li>
+
+
+        </ul>
+
+    </div>
+    <br> <br>
+
+</div>

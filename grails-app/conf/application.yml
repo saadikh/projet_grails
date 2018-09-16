@@ -130,6 +130,8 @@ environments:
 server:
     port: 8081
     contextPath: /m2_mbds
+    filePath: "User/accueil.png"
+    fileUrl: "http://localhost:8081/m2_mbds/"
 
 #    def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true, failOnError: true)
 #                                            def gamingRole = new Role(authority: 'ROLE_USER').save(flush: true, failOnError: true)

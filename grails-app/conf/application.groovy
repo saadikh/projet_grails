@@ -33,4 +33,4 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 ]
 
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/index'
+//grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/index'
