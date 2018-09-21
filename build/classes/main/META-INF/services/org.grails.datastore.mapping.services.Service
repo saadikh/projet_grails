@@ -1,4 +1,5 @@
-m2_mbds.$MatchServiceImplementation
-m2_mbds.$MessageServiceImplementation
-m2_mbds.$PlayerServiceImplementation
-m2_mbds.$UserServiceImplementation
+fr.mbds.grails.fr.mbds.grails.models.$ImageServiceImplementation
+fr.mbds.grails.$MatchServiceImplementation
+fr.mbds.grails.$MessageServiceImplementation
+fr.mbds.grails.$RoleServiceImplementation
+fr.mbds.grails.$UserServiceImplementation

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="m2_mbds_integrationTest" target="1.8" />
-      <module name="m2_mbds_main" target="1.8" />
-      <module name="m2_mbds_test" target="1.8" />
+      <module name="grailsProject_integrationTest" target="1.8" />
+      <module name="grailsProject_main" target="1.8" />
+      <module name="grailsProject_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

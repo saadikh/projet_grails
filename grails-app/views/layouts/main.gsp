@@ -7,44 +7,155 @@
         <g:layoutTitle default="Grails"/>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 
     <asset:stylesheet src="application.css"/>
 
     <g:layoutHead/>
-</head>
-<body>
 
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#">
-		    <asset:image src="grails.svg" alt="Grails Logo"/>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
-            </div>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="sidebar" data-background-color="white" data-active-color="danger">
+        <div class="sidebar-wrapper">
+
+            <ul class="nav">
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                    <li class="${request.forwardURI == '/grails/adminInterface'? 'active':''}">
+                        <a href="/grails/adminInterface">
+                            <i class="ti-stats-up"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles="ROLE_USER">
+                    <li class="${request.forwardURI.contains('/grails/user/show')? 'active':''}">
+
+                        <a href="/grails/user/show/${sec.loggedInUserInfo(field: 'id')}">
+                            <i class="ti-user"></i>
+
+                            <p>Profile</p>
+                        </a>
+
+                    </li>
+                </sec:ifAnyGranted>
+
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                    <li class="${request.forwardURI.contains('/grails/user') && !request.forwardURI.contains('userInterface')? 'active':''}">
+                        <a href="/grails/user">
+                            <i class="ti-settings"></i>
+
+                            <p>User management</p>
+                        </a>
+                    </li>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                    <li class="${request.forwardURI.contains('/grails/match')  && !request.forwardURI.contains('match')? 'active':''}">
+                        <a href="/grails/match">
+                            <i class="ti-map-alt"></i>
+
+                            <p>Match management</p>
+                        </a>
+                    </li>
+                </sec:ifAnyGranted>
+                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                    <li class="${request.forwardURI.contains('/grails/message')? 'active':''}">
+                        <a href="/grails/message">
+                            <i class="ti-layers-alt"></i>
+
+                            <p>Message management</p>
+                        </a>
+                    </li>
+                </sec:ifAnyGranted>
+            </ul>
         </div>
     </div>
 
-    <g:layoutBody/>
+    <div class="main-panel">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <sec:ifAnyGranted roles="ROLE_USER">
+                        <span class="navbar-brand" href="#">User plateforme</span>
+                    </sec:ifAnyGranted>
+                    <sec:ifAnyGranted roles="ROLE_ADMIN">
+                        <span class="navbar-brand" href="#">Admin plateforme</span>
+                    </sec:ifAnyGranted>
 
-    <div class="footer" role="contentinfo"></div>
+                </div>
 
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <sec:ifLoggedIn>
+                            <li>
+                                <a href="/grails/user/show/${sec.loggedInUserInfo(field: 'id')}">
+                                    <i class="ti-user"></i>
+
+                                    <p>${sec.loggedInUserInfo(field: 'username')}</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/grails/logout">
+                                    <i class="ti-power-off"></i>
+
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                            <li>
+                                <a href="/grails/login">
+                                    <i class="ti-unlock"></i>
+
+                                    <p>Login</p>
+                                </a>
+                            </li>
+                        </sec:ifNotLoggedIn>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <g:layoutBody/>
+
+        <footer class="footer" role="contentinfo">
+            <div class="container-fluid">
+                <nav class="pull-left">
+                    <ul>
+
+                        <li>
+                            <a href="">
+                                Directed by Mamadou and Maguette
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="copyright pull-right">
+                    2018 - 2019
+                </div>
+            </div>
+        </footer>
+
     </div>
 
-    <asset:javascript src="application.js"/>
+</div>
+
+<div id="spinner" class="spinner" style="display:none;">
+    <g:message code="spinner.alt" default="Loading&hellip;"/>
+</div>
+
+<asset:javascript src="application.js"/>
 
 </body>
 </html>

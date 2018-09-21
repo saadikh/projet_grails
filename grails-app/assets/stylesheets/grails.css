@@ -44,7 +44,8 @@ pre {
 
 }
 .navbar-default, .navbar-static-top {
-    background-color: #424649;
+    /*background-color: #424649;*/
+    background-color: #008080;
     border: 0px;
 }
 a.navbar-brand {
@@ -59,7 +60,7 @@ a.navbar-brand {
     color: white !important;
 }
 .navbar-nav>li>a:hover {
-    background-color: #2559a7 !important;
+    background-color: #4083A4 !important;
     color: white !important;
 }
 .navbar-nav>li>a {
@@ -432,7 +433,8 @@ h8 {
 }
 
 #footer {
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
+    background: #008080;
     text-align: center;
     font-size: 14px;
     padding: 20px 0 30px;

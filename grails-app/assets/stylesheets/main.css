@@ -84,7 +84,7 @@ img {
 }
 
 .footer {
-    background: #424649;
+    background: #008080;
     color: #ffffff;
     clear: both;
     font-size: 0.8em;
@@ -571,4 +571,10 @@ a.skip {
 img.grails-logo {
     height:340px;
     margin-top:-10px;
+}
+
+
+#submit{
+    background-color: #008080;
+
 }

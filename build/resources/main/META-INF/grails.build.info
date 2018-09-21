@@ -1,6 +1,6 @@
-#Sat, 15 Sep 2018 15:57:56 +0200
+#Sun, 16 Sep 2018 08:49:06 +0200
 
 info.app.version=0.1
-info.app.name=m2_mbds
+info.app.name=grailsProject
 grails.env=development
-info.app.grailsVersion=3.3.7
+info.app.grailsVersion=3.3.8
