@@ -7,7 +7,7 @@ class Match {
     User looser
     int winnerScore
     int looserScore
-    //Date dateCreated
+    Date dateCreated
 
 
     //static hasMany = [user: User]

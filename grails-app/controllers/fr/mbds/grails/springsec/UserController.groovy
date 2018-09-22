@@ -1,6 +1,6 @@
 package fr.mbds.grails.springsec
 
-import fr.mbds.grails.fr.mbds.grails.models.Image
+
 import fr.mbds.grails.fr.mbds.grails.models.Message
 import fr.mbds.grails.fr.mbds.grails.springsec.Role
 import fr.mbds.grails.fr.mbds.grails.springsec.User

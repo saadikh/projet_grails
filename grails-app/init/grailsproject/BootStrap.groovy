@@ -1,7 +1,6 @@
 package grailsproject
 
-import fr.mbds.grails.fr.mbds.grails.models.Image
-import fr.mbds.grails.fr.mbds.grails.models.Match
+
 import fr.mbds.grails.fr.mbds.grails.models.Message
 import fr.mbds.grails.fr.mbds.grails.springsec.Role
 import fr.mbds.grails.fr.mbds.grails.springsec.User
