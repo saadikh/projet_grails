@@ -15,14 +15,13 @@ class BootStrap {
         def admin = User.findOrSaveWhere(username: 'admin', password: 'admin', enabled: true)
         def user = User.findOrSaveWhere(username: 'user', password: 'user', enabled: true)
 
-        String path = 'uploads/images/users/'
+        //String path = 'uploads/images/users/'
 
 
-        def img = new Image(name: 'Thiaw', description: 'profile', url: path + 'thiaw.jpg', user: admin).save(flush: true, failOnError: true)
-        def msg = new Message(author: admin, target: user, content: "salut")
+        //def img = new Image(name: 'Thiaw', description: 'profile', url: path + 'thiaw.jpg', user: admin).save(flush: true, failOnError: true)
+        //def msg = new Message(author: admin, target: user, content: "salut")
 
-        admin.addToImage(img)
-        admin.addToMessages(msg)
+        //admin.addToMessages(msg)
 
 
         if (!admin.authorities.contains(adminRole)) {

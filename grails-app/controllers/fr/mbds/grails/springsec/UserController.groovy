@@ -93,19 +93,7 @@ class UserController {
 
         List fileList = request.getFiles('photos')
         int j = 0;
-        fileList.each { file ->
-            if (file.getOriginalFilename()) {
-                String path = 'uploads/images/users/'
-                file.transferTo(new File(grailsApplication.config.getProperty('image.path') + "image_" + j + "user" + user.id + ".jpg"))
-                Image image = new Image(
-                        name: "image_" + j + "user" + user.id,
-                        description: "image_" + j + "user" + user.id,
-                        url: path + "image_" + j + "user" + user.id + ".jpg",
-                        user: user).save(flush: true, failOnError: true)
-                user.addToImage(image)
-                j++
-            }
-        }
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])

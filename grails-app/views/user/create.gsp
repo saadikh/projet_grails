@@ -26,19 +26,17 @@
             </ul>
             </g:hasErrors>
             <g:form resource="${this.user}" method="POST" enctype="multipart/form-data">
-                <div class="col-md-6">
                 <fieldset class="form">
                     <div class="fieldcontain">
                         <label for="role">Role *</label>
                         <select name="role" id="role">
                             <option value="ROLE_USER">User</option>
                             <option value="ROLE_ADMIN">Admin</option>
-                        </select>
-
+                        </select
                         <f:all bean="user"/>
                     </div>
 
                 </fieldset>
-                </div>
+            </g:form>
     </body>
 </html>

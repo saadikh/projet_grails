@@ -16,7 +16,7 @@ class User implements Serializable {
 
     String username
     String password
-    String image
+    //String image
 
 
     boolean enabled = true
@@ -25,7 +25,7 @@ class User implements Serializable {
     boolean passwordExpired
     //Date dateCreated
 
-    static hasMany = [messages: Message, match: Match]
+    //static hasMany = [messages: Message, match: Match]
 
 
 
@@ -37,7 +37,7 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
-        image nullable: false, blank: false
+        //image nullable: false, blank: false
     }
 
     static mapping = {
