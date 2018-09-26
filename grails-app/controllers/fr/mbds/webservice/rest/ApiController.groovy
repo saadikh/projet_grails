@@ -55,7 +55,56 @@ class ApiController {
                     }
                 }
                 break
-     
+            case 'POST':
+                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                    render(status: 405, text: "Vous n'etes pas adhérant, impossible d'jouter un livre")
+                    return
+                }
+
+                def userInstance
+                userInstance = new User(username: params.get("username"), password: params.get("password"))
+
+
+                if (userInstance.save(flush: true)) {
+                    render(status: 201, text: "user inseré avec succès")
+                } else {
+                    render(status: 400, text: "Des parametres ne sont pas au bon format")
+                }
+                break
+            case 'PUT':
+                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                    render(status: 405, text: "Vous n'etes pas adhérant, impossible de modifer un livre")
+                    return
+                }
+                request.withFormat {
+                    json {
+                            def putUser = User.executeUpdate("update User b set b.username = '" + request.JSON.username + "'" +
+                                    " , b.password = '" + request.JSON.password + "'" +
+                                    " where b.id = " + params.id)
+                            if (putUser) {
+                                render(status: 202, text: "User mis à jour avec succès")
+                            } else {
+                                render(status: 400, text: "erreur")
+                            }
+                        }
+                    }
+                break
+            case 'DELETE':
+                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
+                    render(status: 401, text: "Vous n'etes pas admin, impossible de supprimer un livre")
+                    return
+                }
+                if (!User.findById(params.id)) {
+                    render(status: 404, text: "Le user est introuvable")
+                    return
+                }
+                def delUser = User.executeUpdate("delete User where id = " + params.id)
+                if (delUser) {
+                    render(status: 202, text: "Le user est supprimée avec succès")
+                } else {
+                    render(status: 400, text: "la requête est mal formatée")
+                }
+                break
             default:
                 response.status = 405
         }
