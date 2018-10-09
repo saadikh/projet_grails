@@ -35,7 +35,9 @@
                         </select
                         <f:all bean="user"/>
                     </div>
-
+                </fieldset>
+                <fieldset class="buttons">
+                    <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                 </fieldset>
             </g:form>
     </body>

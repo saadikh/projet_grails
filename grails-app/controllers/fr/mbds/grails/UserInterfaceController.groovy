@@ -6,10 +6,16 @@ import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(["ROLE_ADMIN", "ROLE_USER"])
 class UserInterfaceController {
-    List<Match> matchs = Match.getAll()
+    def springSecurityService
+
     def index() {
-        [matchs: matchs]
+        def currentUser = springSecurityService.getCurrentUser()
+
+        List<Match> matches = Match.findAllByUser(currentUser)
+
+        [matches: matches]
     }
+
     def getJsonMatchs(){
         def responseData = [
                 'match'         : Match.findAll(),

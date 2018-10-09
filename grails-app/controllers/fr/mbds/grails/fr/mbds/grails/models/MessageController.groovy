@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-@Secured(["ROLE_ADMIN"])
+@Secured(["ROLE_ADMIN", "ROLE_USER"])
 class MessageController {
 
     GrailsApplication grailsApplication
@@ -22,7 +22,6 @@ class MessageController {
         respond Message.list(params), model:[messageCount: Message.count()]
     }
 
-    @Secured(["ROLE_USER, ROLE_ADMIN"])
     def show(Message message) {
         respond message
     }
@@ -32,29 +31,25 @@ class MessageController {
     }
 
     @Transactional
-    def save(Message message) {
-
-        if (message == null) {
-            transactionStatus.setRollbackOnly()
+    def save(Message msg) {
+        if (msg == null) {
             notFound()
             return
         }
 
-        if (message.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond message.errors, view: 'create'
+        try {
+            messageService.save(msg)
+        } catch (ValidationException e) {
+            respond msg.errors, view:'create'
             return
         }
 
-        message.save flush: true
-
-
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'message.label', default: 'Message'), message.id])
-                redirect message
+                flash.message = message(code: 'default.created.message', args: [message(code: 'msg.label', default: 'Message'), msg.id])
+                redirect msg
             }
-            '*' { respond message, [status: CREATED] }
+            '*' { respond msg, [status: CREATED] }
         }
     }
 
@@ -63,46 +58,46 @@ class MessageController {
     }
 
     @Transactional
-    def update(Message message) {
-        if (message == null) {
+    def update(Message msg) {
+        if (msg == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
 
-        if (message.hasErrors()) {
+        if (msg.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond message.errors, view:'edit'
+            respond msg.errors, view:'edit'
             return
         }
 
-        message.save flush:true
+        msg.save flush:true
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'message.label', default: 'Message'), message.id])
-                redirect message
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'msg.label', default: 'Message'), msg.id])
+                redirect msg
             }
-            '*' { respond message, [status: OK] }
+            '*' { respond msg, [status: OK] }
         }
     }
 
     @Transactional
-    def delete(Message message) {
+    def delete(Message msg) {
 
-        if (message == null) {
+        if (msg == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        message.delete flush: true
+        msg.delete flush: true
 
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'message.label', default: 'Message'), message.id])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'msg.label', default: 'Message'), msg.id])
                 redirect action: "index", method: "GET"
             }
             '*' { render status: NO_CONTENT }

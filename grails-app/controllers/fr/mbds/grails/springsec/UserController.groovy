@@ -1,6 +1,8 @@
 package fr.mbds.grails.springsec
 
-
+import fr.mbds.grails.UserService
+import fr.mbds.grails.fr.mbds.grails.models.CustomerService
+import fr.mbds.grails.fr.mbds.grails.models.Match
 import fr.mbds.grails.fr.mbds.grails.models.Message
 import fr.mbds.grails.fr.mbds.grails.springsec.Role
 import fr.mbds.grails.fr.mbds.grails.springsec.User
@@ -14,6 +16,10 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 @Secured(["ROLE_ADMIN"])
 class UserController {
+    UserService userService
+
+    CustomerService customerService
+
     def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
 
@@ -32,6 +38,7 @@ class UserController {
         } else {
             respond user
         }
+        respond user
 
     }
 
@@ -40,7 +47,6 @@ class UserController {
         def responseData = [
                 'user'         : User.findById(id),
                 'username': User.findById(id).username,
-                'image'      : User.findById(id).image
         ]
         render responseData as JSON
     }
@@ -64,14 +70,16 @@ class UserController {
             return
         }
 
-        if (params.message) {
+
+        user.save flush: true
+
+        /*if (params.message) {
             user.addToMessages(Message.findById(params.messages))
 
         } else {
             println("no message defined")
-        }
+        }*/
 
-        user.save flush: true
 
         if(params.role == "ROLE_USER"){
             UserRole.create(user, Role.findOrSaveWhere('authority': 'ROLE_USER'), true)
@@ -81,18 +89,7 @@ class UserController {
             UserRole.create(user, Role.findOrSaveWhere('authority': 'ROLE_ADMIN'), true)
         }
 
-       /* String imagename =  new Date().getTime() + '.jpg'
-        String filenae = 'C:/wamp/www/img/' + imagename
 
-        File imageFile = new File(filenae)
-        imageFile.createNewFile()
-
-        params.profileImage.transferTo(imageFile)
-
-        user.image = imagename*/
-
-        List fileList = request.getFiles('photos')
-        int j = 0;
 
         request.withFormat {
             form multipartForm {
@@ -136,20 +133,27 @@ class UserController {
     @Secured("ROLE_ADMIN")
     def delete(User user) {
         if (user == null) {
-            transactionStatus.setRollbackOnly()
             notFound()
             return
         }
 
-        user.delete flush: true
+        //customerService.delete(user.getId())
+
+        Collection<UserRole> ur = UserRole.findAllByUser(user)
+        /*Collection<Message> ums = UserRole.findAllByUser(user)
+        Collection<Match> umt = UserRole.findAllByUser(user)
+        ums*.delete()
+        umt*.delete()*/
+        ur*.delete(flush: true)
+        user.delete(flush: true)
+
 
         request.withFormat {
             form multipartForm {
-
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect action: "index", method: "GET"
+                redirect action:"index", method:"GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 

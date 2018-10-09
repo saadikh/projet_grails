@@ -19,6 +19,7 @@ class MatchController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Match.list(params), model:[matchCount: Match.count()]

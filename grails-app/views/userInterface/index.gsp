@@ -15,11 +15,10 @@
 
                 <div class="message">
                     <ul class="messageList">
-                        <g:each in="${matchs}">
-                            <>
-                                <h3>${matchs.winner}</h3>
+                        <g:each in="${matches}">
+                            <li>
+                                <h3>${matches.winner}</h3>
 
-                                <p>${it.looser}</p>
                             </li>
                         </g:each>
                     </ul>

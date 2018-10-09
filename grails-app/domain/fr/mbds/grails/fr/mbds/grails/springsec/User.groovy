@@ -1,6 +1,5 @@
 package fr.mbds.grails.fr.mbds.grails.springsec
 
-
 import fr.mbds.grails.fr.mbds.grails.models.Match
 import fr.mbds.grails.fr.mbds.grails.models.Message
 import groovy.transform.EqualsAndHashCode
@@ -16,18 +15,14 @@ class User implements Serializable {
 
     String username
     String password
-    //String image
 
 
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    //Date dateCreated
 
-    //static hasMany = [messages: Message, match: Match]
-
-
+    static hasMany = [matchs: Match, messages: Message]
 
 
     Set<Role> getAuthorities() {
@@ -37,15 +32,16 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
-        //image nullable: false, blank: false
+
     }
 
     static mapping = {
 	    password column: '`password`'
+
     }
 
-   /* @Override
+   @Override
     String toString(){
         return username
-    }*/
+    }
 }

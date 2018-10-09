@@ -7,15 +7,16 @@ class Match {
     User looser
     int winnerScore
     int looserScore
-    Date dateCreated
 
 
-    //static hasMany = [user: User]
-
+    static belongsTo = [user: User]
 
     static constraints = {
 
-        //dateCreated nullable: false
+    }
 
+    @Override
+    String toString(){
+        return id
     }
 }
