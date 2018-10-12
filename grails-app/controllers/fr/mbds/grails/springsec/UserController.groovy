@@ -64,6 +64,18 @@ class UserController {
             return
         }
 
+        println params.profileImage.getClass()
+        String imagename = user.image
+        String filenae = 'C:/wamp64/www/img/' + imagename + '.jpg'
+        File imageFile = new File(filenae)
+        if(!imageFile.exists()){
+            imageFile.createNewFile()
+            params.profileImage.transferTo(imageFile)
+            user.image = imagename
+        }
+
+
+
         if (user.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond user.errors, view: 'create'
@@ -111,6 +123,15 @@ class UserController {
             notFound()
             return
         }
+
+        println params.profileImage.getClass()
+        String imagename =  user.image
+        String filenae = 'C:/wamp64/www/img/' + imagename
+        File imageFile = new File(filenae)
+        imageFile.createNewFile()
+        params.profileImage.transferTo(imageFile)
+        user.image = imagename
+
 
         if (user.hasErrors()) {
             transactionStatus.setRollbackOnly()

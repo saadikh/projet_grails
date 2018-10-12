@@ -21,6 +21,7 @@ class User implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
+    String image
 
     static hasMany = [matchs: Match, messages: Message]
 
@@ -32,15 +33,16 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
+        image nullable: true, blank: false
 
     }
 
     static mapping = {
-	    password column: '`password`'
+        password column: '`password`'
 
     }
 
-   @Override
+    @Override
     String toString(){
         return username
     }
