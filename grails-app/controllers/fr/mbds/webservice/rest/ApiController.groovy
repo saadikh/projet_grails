@@ -34,6 +34,10 @@ class ApiController {
                 "</ol>")
     }
 
+
+    def users(){
+        user()
+    }
     def user() {
         switch (request.getMethod()) {
             case 'GET':
@@ -59,10 +63,6 @@ class ApiController {
                 }
                 break
             case 'POST':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 405, text: "You're not admin, you can't add a user")
-                    return
-                }
 
                 def userInstance
                 userInstance = new User(username: params.get("username"), password: params.get("password"))
@@ -75,8 +75,8 @@ class ApiController {
                 }
                 break
             case 'PUT':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 405, text: "You're not a member, you can't edit a user")
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                    render(status: 403, text: "You're not a admin, you can't edit a user")
                     return
                 }
                 request.withFormat {
@@ -94,7 +94,7 @@ class ApiController {
                 break
             case 'DELETE':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
-                    render(status: 401, text: "You're not admin, you can't delete a user")
+                    render(status: 403, text: "You're not admin, you can't delete a user")
                     return
                 }
                 if (!User.findById(params.id)) {
@@ -113,6 +113,9 @@ class ApiController {
         }
     }
 
+    def messages(){
+        messages()
+    }
     def message(){
         switch (request.getMethod()) {
             case 'GET':
@@ -139,7 +142,7 @@ class ApiController {
                 break
             case 'POST':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 405, text: "You're not a member, you can't add a message")
+                    render(status: 403, text: "You're not admin, you can't add a message")
                     return
                 }
 
@@ -155,7 +158,7 @@ class ApiController {
                 break
             case 'PUT':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 405, text: "You're not admin, you can't edit a message")
+                    render(status: 403, text: "You're not admin, you can't edit a message")
                     return
                 }
                 request.withFormat {
@@ -173,7 +176,7 @@ class ApiController {
                 break
             case 'DELETE':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
-                    render(status: 401, text: "You're not admin, you can't delete a message")
+                    render(status: 403, text: "You're not admin, you can't delete a message")
                     return
                 }
                 if (!Message.findById(params.id)) {
@@ -192,6 +195,9 @@ class ApiController {
         }
     }
 
+    def matches(){
+        match()
+    }
     def match(){
         switch (request.getMethod()) {
             case 'GET':

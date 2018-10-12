@@ -91,7 +91,7 @@ class MessageController {
             notFound()
             return
         }
-
+        //supprime les refs du message vers les autres users
         msg.delete flush: true
 
 

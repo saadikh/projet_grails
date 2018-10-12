@@ -14,6 +14,10 @@ class Message {
     static constraints = {
     }
 
+    /*static mapping = {
+        user lazy: false
+    }*/
+
     @Override
     String toString(){
         return id
