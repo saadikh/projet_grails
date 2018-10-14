@@ -64,15 +64,28 @@ class UserController {
             return
         }
 
-        println params.profileImage.getClass()
+        println params.file.getClass()
         String imagename = user.image
         String filenae = 'C:/wamp64/www/img/' + imagename + '.jpg'
         File imageFile = new File(filenae)
         if(!imageFile.exists()){
             imageFile.createNewFile()
-            params.profileImage.transferTo(imageFile)
+            params.file.transferTo(imageFile)
             user.image = imagename
         }
+
+
+   /*     println params.file.getClass()
+        String nameimage = user.image
+        String namefile = 'C:/wamp64/www/upload/' + nameimage + '.jpg'
+        File fileImage = new File(namefile)
+        if(!fileImage.exists()){
+            fileImage.createNewFile()
+            params.file.transferTo(imageFile)
+            user.image = nameimage
+        }
+*/
+
 
 
 
@@ -102,6 +115,7 @@ class UserController {
         }
 
 
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), user.id])
@@ -123,12 +137,12 @@ class UserController {
             return
         }
 
-        println params.profileImage.getClass()
+        println params.file.getClass()
         String imagename =  user.image
         String filenae = 'C:/wamp64/www/img/' + imagename
         File imageFile = new File(filenae)
         imageFile.createNewFile()
-        params.profileImage.transferTo(imageFile)
+        params.file.transferTo(imageFile)
         user.image = imagename
 
 

@@ -51,7 +51,7 @@
                         </a>
                     </li>
                 </sec:ifAnyGranted>
-                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
                     <li class="${request.forwardURI.contains('/grails/match')  && !request.forwardURI.contains('match')? 'active':''}">
                         <a href="/grails/match">
                             <i class="ti-map-alt"></i>
@@ -60,7 +60,7 @@
                         </a>
                     </li>
                 </sec:ifAnyGranted>
-                <sec:ifAnyGranted roles="ROLE_ADMIN">
+                <sec:ifAnyGranted roles="ROLE_ADMIN,ROLE_USER">
                     <li class="${request.forwardURI.contains('/grails/message')? 'active':''}">
                         <a href="/grails/message">
                             <i class="ti-layers-alt"></i>
