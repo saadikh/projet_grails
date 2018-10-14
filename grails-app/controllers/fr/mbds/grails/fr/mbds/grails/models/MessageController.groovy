@@ -44,8 +44,6 @@ class MessageController {
             return
         }
 
-
-
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'msg.label', default: 'Message'), msg.id])

@@ -8,16 +8,10 @@ class Match {
     int winnerScore
     int looserScore
 
-
     static belongsTo = [user: User]
-    //static hasMany = [users: User]
 
     static constraints = {
     }
-
-    /*static mapping = {
-        user lazy: false
-    }*/
 
     @Override
     String toString(){

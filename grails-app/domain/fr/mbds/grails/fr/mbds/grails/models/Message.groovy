@@ -11,10 +11,6 @@ class Message {
     boolean read = false
 
     static constraints = {
-        author nullable: false, blank: false
-        target nullable: false, blank: false
-        content nullable: false, blank: false
-
     }
 
     @Override
