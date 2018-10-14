@@ -15,6 +15,10 @@ class Message {
     //static hasMany = [users: User]
 
     static constraints = {
+        author nullable: false, blank: false
+        target nullable: false, blank: false
+        content nullable: false, blank: false
+
     }
 
     /*static mapping = {
