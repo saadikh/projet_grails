@@ -7,19 +7,11 @@ class Message {
     User target
     String content
 
-    static belongsTo = [user: User]
-
     Date dateCreated = new Date()
     boolean read = false
 
-    //static hasMany = [users: User]
-
     static constraints = {
     }
-
-    /*static mapping = {
-        user lazy: false
-    }*/
 
     @Override
     String toString(){

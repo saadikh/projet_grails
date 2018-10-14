@@ -67,21 +67,6 @@ class UserController {
             user.image = imagename
         }
 
-
-   /*     println params.file.getClass()
-        String nameimage = user.image
-        String namefile = 'C:/wamp64/www/upload/' + nameimage + '.jpg'
-        File fileImage = new File(namefile)
-        if(!fileImage.exists()){
-            fileImage.createNewFile()
-            params.file.transferTo(imageFile)
-            user.image = nameimage
-        }
-*/
-
-
-
-
         if (user.hasErrors()) {
             transactionStatus.setRollbackOnly()
             respond user.errors, view: 'create'
@@ -90,14 +75,6 @@ class UserController {
 
 
         user.save flush: true
-
-        /*if (params.message) {
-            user.addToMessages(Message.findById(params.messages))
-
-        } else {
-            println("no message defined")
-        }*/
-
 
         if(params.role == "ROLE_USER"){
             UserRole.create(user, Role.findOrSaveWhere('authority': 'ROLE_USER'), true)
@@ -168,10 +145,6 @@ class UserController {
         //customerService.delete(user.getId())
 
         Collection<UserRole> ur = UserRole.findAllByUser(user)
-        /*Collection<Message> ums = UserRole.findAllByUser(user)
-        Collection<Match> umt = UserRole.findAllByUser(user)
-        ums*.delete()
-        umt*.delete()*/
         ur*.delete(flush: true)
         user.delete(flush: true)
 

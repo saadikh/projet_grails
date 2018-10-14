@@ -106,7 +106,7 @@ environments:
         server:
             contextPath: '/grails'
         media:
-            path: "C:\\Users\\thiaw\\Documents\\mbds\\grails\\grailsProject\\grails-app\\uploads\\images\\users\\"
+            path: ""
     test:
         dataSource:
             dbCreate: update
