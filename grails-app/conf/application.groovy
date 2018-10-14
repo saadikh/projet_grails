@@ -47,22 +47,3 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 				filters: 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
 		]
 ]
-
-
-/*grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/api/success"*/
-
-/* Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.mbds.webservice.rest.sec.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.mbds.webservice.rest.sec.UserRole'
-grails.plugin.springsecurity.authority.className = 'org.mbds.webservice.rest.sec.Role'
-*/
-
-
-/*grails.plugin.springsecurity.rememberMe.persistent = false
-grails.plugin.springsecurity.rest.login.useJsonCredentials = true
-grails.plugin.springsecurity.rest.login.failureStatusCode = 401
-grails.plugin.springsecurity.rest.token.storage.useGorm = true
-grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'fr.mbds.grails.fr.mbds.grails.AuthenticationToken'
-grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
-grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'*/
