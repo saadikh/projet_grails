@@ -12,33 +12,26 @@
     <div class="container-fluid">
         <div class="card card-map">
             <div class="header">
-                <h5 class="title"><span class="ti-map-alt"></span>
-                    Show winners of matches </h5>
+                <h5 class="title" style="color: #2b542c"><span class="ti-map-alt" ></span>
+                    Welcome to GestaGames !</h5>
             </div>
 
-                <div class="message">
-                    <ul class="messageList">
-                        <g:each in="${matches}">
-                            <li>
-                                <h3>${matches.winner}</h3>
-
-                            </li>
-                        </g:each>
-                    </ul>
+                <div>
+                   <h3 style="color: #2b542c">GestaGame is a platform to manage games.<br><br>
+                   the administrator creates the users by adding them with their picture suggesting and thier
+                   role with their username and password.<br><br>
+                   He can also add them to a match and even send them a message.<br><br>
+                   On Match Management he can also create a match,<br><br> list all the matches with winners and losers.<br><br>
+                   On Message Management the administrator can send a message to a user or another admin,<br><br>
+                   also list messages that users send themselves <br><br>
+                   the user can connect by his username:<br><br> particulary the user name and the password that
+                   the admin creates for him.<br> <br>He can possibly see the list of matches but also to send messages
+                   to the admin or another user.</h3>
                 </div>
             </div>
         </div>
     </div>
 <div class="bloc-principal">
 </div>
-
-%{--<div class="bloc-message">
-    <div class="nav" role="navigation"><br/>
-        <ul>
-            <li><g:link controller="message" class="create" action="create">Create Message</g:link></li>
-        </ul>
-    </div>
-</div>--}%
-
 </body>
 </html>
