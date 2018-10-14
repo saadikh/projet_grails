@@ -32,7 +32,7 @@
             <f:all bean="user" except="password"/>
         </fieldset>
         <fieldset controller="user" about="">
-            <input type="file" name="file"/>
+            <input type="file" name="profileImage"/>
             %{-- <input type="submit"/>--}%
         </fieldset>
         <fieldset class="buttons">

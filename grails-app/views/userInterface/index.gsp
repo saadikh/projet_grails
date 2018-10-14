@@ -2,8 +2,6 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <asset:stylesheet src="drag_drop.css"/>
-    <asset:stylesheet src="userMessages.css"/>
     <title>User home</title>
 </head>
 
@@ -28,16 +26,5 @@
             </div>
         </div>
     </div>
-<div class="bloc-principal">
-</div>
-
-%{--<div class="bloc-message">
-    <div class="nav" role="navigation"><br/>
-        <ul>
-            <li><g:link controller="message" class="create" action="create">Create Message</g:link></li>
-        </ul>
-    </div>
-</div>--}%
-
 </body>
 </html>

@@ -9,7 +9,7 @@ import grails.transaction.Transactional
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-@Secured(["ROLE_ADMIN", "ROLE_USER"])
+@Secured(["ROLE_ADMIN"])
 class MatchController {
 
     GrailsApplication grailsApplication

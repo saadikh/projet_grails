@@ -15,12 +15,14 @@ class User implements Serializable {
 
     String username
     String password
+    String image
+
+
 
     boolean enabled = true
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    String image
 
     static hasMany = [matchs: Match, messages: Message]
 

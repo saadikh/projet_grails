@@ -10,6 +10,7 @@ class Match {
 
 
     static belongsTo = [user: User]
+    //atic hasMany = [users: User]
 
     static constraints = {
     }

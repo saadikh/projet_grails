@@ -13,6 +13,7 @@ class Role implements Serializable {
 
 	String authority
 
+	//static belongsTo = [user: User]
 	static constraints = {
 		authority nullable: false, blank: false, unique: true
 	}

@@ -10,7 +10,8 @@ import static org.springframework.http.HttpStatus.*
 
 @Secured(["ROLE_ADMIN", "ROLE_USER"])
 class MessageController {
-
+    // methode qui me donne tous les messages lu
+    // appel de cet methode en js dans la vue
     GrailsApplication grailsApplication
 
     MessageService messageService

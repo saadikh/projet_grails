@@ -26,13 +26,6 @@
         </ul>
     </g:hasErrors>
     <g:form resource="${this.user}" method="POST" enctype="multipart/form-data">
-        <fieldset controller="user" about="">
-            <input type="file" name="file" id="file"/>
-            <!-- Drag and Drop container-->
-            <div class="upload-area"  id="uploadfile">
-                <h1>Drag and Drop file here<br/>Or<br/>Click to select file</h1>
-            </div>
-        </fieldset>
         <fieldset class="form">
             <div class="fieldcontain">
                 <label for="role">Role *</label>
@@ -42,6 +35,10 @@
                 </select>
                 <f:all bean="user"/>
             </div>
+        </fieldset>
+        <fieldset controller="user" about="">
+            <input type="file" name="profileImage"/>
+            %{-- <input type="submit"/>--}%
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save btn btn-info" value="${message(code: 'default.button.create.label', default: 'Create')}" />
