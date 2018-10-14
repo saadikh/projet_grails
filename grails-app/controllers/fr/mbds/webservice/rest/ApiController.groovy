@@ -12,6 +12,8 @@ import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 
+import static fr.mbds.grails.fr.mbds.grails.springsec.User.get
+
 @Secured('permitAll')
 class ApiController {
     def springSecurityService
@@ -34,10 +36,6 @@ class ApiController {
                 "</ol>")
     }
 
-
-    def users(){
-        user()
-    }
     def user() {
         switch (request.getMethod()) {
             case 'GET':
@@ -63,6 +61,10 @@ class ApiController {
                 }
                 break
             case 'POST':
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                    render(status: 403, text: "You're not admin, you can't add a user")
+                    return
+                }
 
                 def userInstance
                 userInstance = new User(username: params.get("username"), password: params.get("password"))
@@ -76,46 +78,44 @@ class ApiController {
                 break
             case 'PUT':
                 if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 403, text: "You're not a admin, you can't edit a user")
+                    render(status: 403, text: "You're not a member, you can't edit a user")
                     return
                 }
                 request.withFormat {
                     json {
-                            def putUser = User.executeUpdate("update User b set b.username = '" + request.JSON.username + "'" +
-                                    " , b.password = '" + request.JSON.password + "'" +
-                                    " where b.id = " + params.id)
-                            if (putUser) {
-                                render(status: 202, text: "User successfully updated")
-                            } else {
-                                render(status: 400, text: "Error")
-                            }
+                        def putUser = User.executeUpdate("update User b set b.username = '" + request.JSON.username + "'" +
+                                " , b.password = '" + request.JSON.password + "'" +
+                                " where b.id = " + params.id)
+                        if (putUser) {
+                            render(status: 202, text: "User successfully updated")
+                        } else {
+                            render(status: 400, text: "Error")
                         }
                     }
+                }
                 break
             case 'DELETE':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
-                    render(status: 403, text: "You're not admin, you can't delete a user")
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
+                    render(status: 403, text: "Vous n'etes pas admin, impossible de supprimer un user")
                     return
                 }
                 if (!User.findById(params.id)) {
-                    render(status: 404, text: "The user can't be found")
+                    render(status: 404, text: "Le user est introuvable")
                     return
                 }
                 def delUser = User.executeUpdate("delete User where id = " + params.id)
                 if (delUser) {
-                    render(status: 202, text: "The user is successfully deleted")
+                    render(status: 202, text: "Le user est supprimée avec succès")
                 } else {
-                    render(status: 400, text: "the request is poorly formatted")
+                    render(status: 400, text: "la requête est mal formatée")
                 }
                 break
             default:
                 response.status = 405
+
         }
     }
 
-    def messages(){
-        messages()
-    }
     def message(){
         switch (request.getMethod()) {
             case 'GET':
@@ -142,7 +142,7 @@ class ApiController {
                 break
             case 'POST':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 403, text: "You're not admin, you can't add a message")
+                    render(status: 405, text: "You're not a member, you can't add a message")
                     return
                 }
 
@@ -158,7 +158,7 @@ class ApiController {
                 break
             case 'PUT':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
-                    render(status: 403, text: "You're not admin, you can't edit a message")
+                    render(status: 405, text: "You're not admin, you can't edit a message")
                     return
                 }
                 request.withFormat {
@@ -176,7 +176,7 @@ class ApiController {
                 break
             case 'DELETE':
                 if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
-                    render(status: 403, text: "You're not admin, you can't delete a message")
+                    render(status: 401, text: "You're not admin, you can't delete a message")
                     return
                 }
                 if (!Message.findById(params.id)) {
@@ -195,9 +195,6 @@ class ApiController {
         }
     }
 
-    def matches(){
-        match()
-    }
     def match(){
         switch (request.getMethod()) {
             case 'GET':

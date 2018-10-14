@@ -9,7 +9,7 @@ grails.plugin.springsecurity.authority.className = 'fr.mbds.grails.fr.mbds.grail
 grails.plugin.springsecurity.rest.token.storage.jwt.useEncryptedJwt = true
 grails.plugin.springsecurity.conf.rest.token.storage.jwt.secret = 'qrD6h8K6S9503Q06Y6Rfk21TErImPYqa'
 grails.plugin.springsecurity.rest.login.active = true
-grails.plugin.springsecurity.rest.login.endpointUrl = "/apii/login"
+grails.plugin.springsecurity.rest.login.endpointUrl = "/api/login"
 grails.plugin.springsecurity.rest.login.failureStatusCode = 401
 
 grails.plugin.springsecurity.logout.postOnly = false
