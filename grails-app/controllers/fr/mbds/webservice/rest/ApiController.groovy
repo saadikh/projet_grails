@@ -116,6 +116,9 @@ class ApiController {
         }
     }
 
+    def users(){
+        user()
+    }
     def message(){
         switch (request.getMethod()) {
             case 'GET':
@@ -141,7 +144,7 @@ class ApiController {
                 }
                 break
             case 'POST':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
                     render(status: 405, text: "You're not a member, you can't add a message")
                     return
                 }
@@ -157,7 +160,7 @@ class ApiController {
                 }
                 break
             case 'PUT':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
                     render(status: 405, text: "You're not admin, you can't edit a message")
                     return
                 }
@@ -175,7 +178,7 @@ class ApiController {
                 }
                 break
             case 'DELETE':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
                     render(status: 401, text: "You're not admin, you can't delete a message")
                     return
                 }
@@ -195,6 +198,9 @@ class ApiController {
         }
     }
 
+    def messages(){
+        message()
+    }
     def match(){
         switch (request.getMethod()) {
             case 'GET':
@@ -220,7 +226,7 @@ class ApiController {
                 }
                 break
             case 'POST':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
                     render(status: 405, text: "You're not admin, so you can't add match")
                     return
                 }
@@ -236,7 +242,7 @@ class ApiController {
                 }
                 break
             case 'PUT':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_USER" }) {
                     render(status: 405, text: "You're not a admin, you can't edit a match")
                     return
                 }
@@ -255,7 +261,7 @@ class ApiController {
                 }
                 break
             case 'DELETE':
-                if (!springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
+                if (springSecurityService.getPrincipal().authorities.any { it.authority == "ROLE_ADMIN" }) {
                     render(status: 401, text: "You're not admin, you can't delete a match")
                     return
                 }
@@ -275,4 +281,7 @@ class ApiController {
         }
     }
 
+    def matches(){
+        match()
+    }
 }
