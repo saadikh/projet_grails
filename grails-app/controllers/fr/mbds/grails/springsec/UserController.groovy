@@ -2,8 +2,6 @@ package fr.mbds.grails.springsec
 
 import fr.mbds.grails.UserService
 import fr.mbds.grails.fr.mbds.grails.models.CustomerService
-import fr.mbds.grails.fr.mbds.grails.models.Match
-import fr.mbds.grails.fr.mbds.grails.models.Message
 import fr.mbds.grails.fr.mbds.grails.springsec.Role
 import fr.mbds.grails.fr.mbds.grails.springsec.User
 import fr.mbds.grails.fr.mbds.grails.springsec.UserRole
@@ -17,9 +15,7 @@ import grails.transaction.Transactional
 @Secured(["ROLE_ADMIN"])
 class UserController {
     UserService userService
-
     CustomerService customerService
-
     def springSecurityService
     static allowedMethods = [save: "POST", update: "PUT", delete: ["POST", "DELETE"]]
 
@@ -27,10 +23,8 @@ class UserController {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model: [userCount: User.count()]
     }
-
     @Secured(["ROLE_USER", "ROLE_ADMIN"])
     def show(User user) {
-
         def currentUser = springSecurityService.getCurrentUser()
 
         if (currentUser.authorities.authority[0] == "ROLE_USER" && currentUser != user) {
@@ -39,7 +33,6 @@ class UserController {
             respond user
         }
         respond user
-
     }
 
     @Secured(["ROLE_ADMIN", "ROLE_USER"])
@@ -57,13 +50,13 @@ class UserController {
     }
 
     @Transactional
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
     def save(User user) {
         if (user == null) {
             transactionStatus.setRollbackOnly()
             notFound()
             return
         }
-
         println params.file.getClass()
         String imagename = user.image
         String filenae = 'C:/wamp64/www/img/' + imagename + '.jpg'
@@ -130,6 +123,7 @@ class UserController {
         respond user
     }
     @Transactional
+    @Secured(["ROLE_ADMIN", "ROLE_USER"])
     def update(User user) {
         if (user == null) {
             transactionStatus.setRollbackOnly()

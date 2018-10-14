@@ -9,6 +9,9 @@ class Message {
 
     static belongsTo = [user: User]
 
+    Date dateCreated = new Date()
+    boolean read = false
+
     //static hasMany = [users: User]
 
     static constraints = {

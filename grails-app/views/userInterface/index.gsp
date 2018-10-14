@@ -12,7 +12,8 @@
     <div class="container-fluid">
         <div class="card card-map">
             <div class="header">
-                <h4 class="title"><span class="ti-map-alt"></span> Matches</h4>
+                <h5 class="title"><span class="ti-map-alt"></span>
+                    Show winners of matches </h5>
             </div>
 
                 <div class="message">
